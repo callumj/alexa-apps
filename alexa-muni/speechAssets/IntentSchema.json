@@ -1,0 +1,10 @@
+{
+  "intents": [
+    {
+      "intent": "NextMuniIntent"
+    },
+    {
+      "intent": "AMAZON.HelpIntent"
+    }
+  ]
+}

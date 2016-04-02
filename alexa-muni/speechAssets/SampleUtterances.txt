@@ -1,0 +1,6 @@
+NextMuniIntent next train
+NextMuniIntent next
+NextMuniIntent how long
+NextMuniIntent when
+NextMuniIntent when the next train is
+NextMuniIntent where the N is
