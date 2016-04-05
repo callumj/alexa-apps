@@ -49,24 +49,24 @@ var nextMuniIntent = function(intent, session, response) {
     var predict = predictions[0];
     var direction = predict.direction[0];
     var title = direction.$.title.split(" ")[0];
-    var text = "<p>Times for " + title + "</p>";
-    var count = 0;
+    var times = [];
     direction.prediction.forEach(function(pre, index, ary) {
-      if (count == 2) {
+      if (index == 2) {
         return;
       }
-
-      var intro = count == 0 ? "Departs in" : "or";
-      text = text + "<p>" + intro + " " + pre.$.minutes + " minutes</p>";
-
-      count++;
+      times.push(pre.$.minutes);
     });
+
+    var cardOuput = "Departs in " + times.join(", ") + " minutes";
+    var text = "<p>Times for " + title + "</p><p>Departs in ";
+    text = text + times.join(" or ") + " minutes.</p>";
 
     console.log(text);
     var speechOutput = {
         speech: "<speak>" + text + "</speak>",
         type: AlexaSkill.speechOutputType.SSML
     };
+    response.tellWithCard(speechOutput, "Muni", cardOuput)
     response.tell(speechOutput);
   });
 };
