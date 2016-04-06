@@ -51,7 +51,7 @@ var nextMuniIntent = function(intent, session, response) {
     var title = direction.$.title.split(" ")[0];
     var times = [];
     direction.prediction.forEach(function(pre, index, ary) {
-      if (index == 2) {
+      if (times.length == 3) {
         return;
       }
       times.push(pre.$.minutes);
@@ -59,7 +59,7 @@ var nextMuniIntent = function(intent, session, response) {
 
     var cardOuput = "Departs in " + times.join(", ") + " minutes";
     var text = "<p>Times for " + title + "</p><p>Departs in ";
-    text = text + times.join(" or ") + " minutes.</p>";
+    text = text + times.join(" <break strength=\"weak\" /> or <break strength=\"weak\" />") + " minutes.</p>";
 
     console.log(text);
     var speechOutput = {
